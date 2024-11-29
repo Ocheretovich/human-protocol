@@ -1,12 +1,6 @@
 import { ChainId } from '@human-protocol/sdk';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Web3Env } from '../enums/web3';
-import {
-  LOCALHOST_CHAIN_IDS,
-  MAINNET_CHAIN_IDS,
-  TESTNET_CHAIN_IDS,
-} from '../utils/constants';
 
 export interface TokensList {
   [key: string]: string | undefined;
@@ -87,24 +81,12 @@ export class NetworkConfigService {
         },
       }),
     };
-    const validChainIds = (() => {
-      switch (this.configService.get<string>('WEB3_ENV')) {
-        case Web3Env.MAINNET:
-          return MAINNET_CHAIN_IDS;
-        case Web3Env.LOCALHOST:
-          return LOCALHOST_CHAIN_IDS;
-        default:
-          return TESTNET_CHAIN_IDS;
-      }
-    })();
 
     // Remove networks without RPC URLs
     this.networkMap = Object.keys(this.networkMap)
       .filter((network) => {
         const networkConfig = this.networkMap[network];
-        return (
-          networkConfig.rpcUrl && validChainIds.includes(networkConfig.chainId)
-        );
+        return networkConfig.rpcUrl;
       })
       .reduce((newNetworkMap: NetworkMapDto, network) => {
         newNetworkMap[network] = this.networkMap[network];
