@@ -24,7 +24,7 @@ import { WalletDto } from './dto/wallet.dto';
 import { EscrowDto, EscrowPaginationDto } from './dto/escrow.dto';
 import { LeaderDto } from './dto/leader.dto';
 import { TransactionPaginationDto } from './dto/transaction.dto';
-import { MainnetsId } from '../../common/utils/constants';
+import { AllowedNetworksId } from '../../common/utils/constants';
 
 @ApiTags('Details')
 @Controller('/details')
@@ -33,7 +33,7 @@ export class DetailsController {
   constructor(private readonly detailsService: DetailsService) {}
 
   @Get('/leaders')
-  @ApiQuery({ name: 'chainId', enum: MainnetsId, required: false })
+  @ApiQuery({ name: 'chainId', enum: AllowedNetworksId, required: false })
   @HttpCode(200)
   @ApiOperation({
     summary: 'Get the best leaders by role',
@@ -53,7 +53,7 @@ export class DetailsController {
   }
 
   @Get('/leaders/all')
-  @ApiQuery({ name: 'chainId', enum: MainnetsId, required: false })
+  @ApiQuery({ name: 'chainId', enum: AllowedNetworksId, required: false })
   @HttpCode(200)
   @ApiOperation({
     summary: 'Get all leaders',
@@ -72,7 +72,7 @@ export class DetailsController {
   }
 
   @Get('/:address')
-  @ApiQuery({ name: 'chainId', enum: MainnetsId })
+  @ApiQuery({ name: 'chainId', enum: AllowedNetworksId })
   @HttpCode(200)
   @ApiOperation({
     summary: 'Get address details',

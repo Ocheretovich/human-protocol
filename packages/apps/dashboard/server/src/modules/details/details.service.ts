@@ -1,5 +1,5 @@
 import { plainToInstance } from 'class-transformer';
-import { MainnetsId } from '../../common/utils/constants';
+import { AllowedNetworksId } from '../../common/utils/constants';
 import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import {
   ChainId,
@@ -149,7 +149,7 @@ export class DetailsService {
 
   public async getBestLeadersByRole(chainId?: ChainId): Promise<LeaderDto[]> {
     const chainIds = !chainId
-      ? (Object.values(MainnetsId).filter(
+      ? (Object.values(AllowedNetworksId).filter(
           (value) => typeof value === 'number',
         ) as number[])
       : [chainId];
@@ -187,7 +187,7 @@ export class DetailsService {
 
   public async getAllLeaders(chainId?: ChainId): Promise<LeaderDto[]> {
     const chainIds = !chainId
-      ? (Object.values(MainnetsId).filter(
+      ? (Object.values(AllowedNetworksId).filter(
           (value) => typeof value === 'number',
         ) as number[])
       : [chainId];

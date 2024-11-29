@@ -1,13 +1,10 @@
 import { ChainId } from '@human-protocol/sdk';
 
-export enum MainnetsId {
+export enum AllowedNetworksId {
   MAINNET = ChainId.MAINNET,
   BSC_MAINNET = ChainId.BSC_MAINNET,
+  BSC_TESTNET = ChainId.BSC_TESTNET,
   POLYGON = ChainId.POLYGON,
-  MOONBEAM = ChainId.MOONBEAM,
-  AVALANCHE = ChainId.AVALANCHE,
-  CELO = ChainId.CELO,
-  XLAYER = ChainId.XLAYER,
 }
 
 export const LOCALHOST_CHAIN_IDS = [ChainId.LOCALHOST];

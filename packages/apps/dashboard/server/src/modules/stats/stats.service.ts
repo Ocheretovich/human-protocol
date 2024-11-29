@@ -18,7 +18,7 @@ import {
 import { HCAPTCHA_STATS_START_DATE } from '../../common/config/env-config.service';
 import { HcaptchaDailyStats, HcaptchaStats } from './dto/hcaptcha.dto';
 import { HmtGeneralStatsDto } from './dto/hmt-general-stats.dto';
-import { MainnetsId } from '../../common/utils/constants';
+import { AllowedNetworksId } from '../../common/utils/constants';
 import { DailyHMTData } from '@human-protocol/sdk/dist/graphql';
 import { CachedHMTData } from './stats.interface';
 import { HmtDailyStatsData } from './dto/hmt.dto';
@@ -177,7 +177,7 @@ export class StatsService implements OnModuleInit {
       totalHolders: 0,
       totalTransactions: 0,
     };
-    for (const network of Object.values(MainnetsId).filter(
+    for (const network of Object.values(AllowedNetworksId).filter(
       (value) => typeof value === 'number',
     ) as number[]) {
       const statisticsClient = new StatisticsClient(NETWORKS[network]);
@@ -219,7 +219,7 @@ export class StatsService implements OnModuleInit {
     // Fetch daily data for each network
     await Promise.all(
       (
-        Object.values(MainnetsId).filter(
+        Object.values(AllowedNetworksId).filter(
           (value) => typeof value === 'number',
         ) as number[]
       ).map(async (network) => {

@@ -12,12 +12,12 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { ChainId } from '@human-protocol/sdk';
 
 import { IsRoleValid } from './validation/role-validation';
-import { MainnetsId } from '../../../common/utils/constants';
+import { AllowedNetworksId } from '../../../common/utils/constants';
 
 export class DetailsTransactionsPaginationDto {
-  @ApiProperty({ enum: MainnetsId })
+  @ApiProperty({ enum: AllowedNetworksId })
   @IsEnum(ChainId)
-  @IsIn(Object.values(MainnetsId))
+  @IsIn(Object.values(AllowedNetworksId))
   @Transform(({ value }) => parseInt(value))
   public chainId: ChainId;
 
@@ -45,9 +45,9 @@ export class DetailsTransactionsPaginationDto {
 }
 
 export class DetailsEscrowsPaginationDto {
-  @ApiProperty({ enum: MainnetsId })
+  @ApiProperty({ enum: AllowedNetworksId })
   @IsEnum(ChainId)
-  @IsIn(Object.values(MainnetsId))
+  @IsIn(Object.values(AllowedNetworksId))
   @Transform(({ value }) => parseInt(value))
   public chainId: ChainId;
 
